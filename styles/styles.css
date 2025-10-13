@@ -26,9 +26,15 @@ body{
 header{
   padding:24px;
   text-align:center;
+  background: linear-gradient(180deg, #1e293b 0%, #334155 100%);
+  color: #f8fafc;
+
+
+ 
 }
 h1{margin:0;font-size:28px}
 .subtitle{margin:6px 0 0;color:var(--muted)}
+
 
 main{
   flex:1;
@@ -91,6 +97,19 @@ main{
   font-weight:600;
 }
 
+#task-form button:hover {
+  background: #7cc3ff;
+  transition: 0.2s;
+}
+
+
+input:focus, select:focus, button:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+
+
 #controls{
   margin-top:12px;
   display:flex;
@@ -98,6 +117,25 @@ main{
   align-items:center;
   flex-wrap:wrap;
 }
+
+
+/* --- Sort Dropdown Accent --- */
+#sort-select {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: var(--glass);
+  color: inherit;
+  transition: all 0.2s ease;
+}
+
+#sort-select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 6px rgba(96,165,250,0.3);
+  background: rgba(96,165,250,0.1);
+}
+
 
 #task-list{list-style:none;padding:0;margin:0}
 .task-card{
@@ -111,6 +149,17 @@ main{
   gap:10px;
   border:1px solid rgba(255,255,255,0.03);
 }
+
+.task-card.completed {
+  opacity: 0.7;
+  background: rgba(16, 185, 129, 0.08);
+}
+
+
+.task-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+}
+
 
 .task-left{display:flex;gap:12px;align-items:center;flex:1}
 .checkbox{width:18px;height:18px;border-radius:4px;border:2px solid var(--muted);display:inline-block;cursor:pointer}
@@ -128,4 +177,178 @@ main{
 
 .muted{color:var(--muted);text-align:center;padding:12px}
 
-footer{padding:12px;text-align:center;color:var(--muted);font-size:13px}
+
+/* Beautify Sort Dropdown */
+#controls select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: var(--glass);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--accent);
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 10px 36px 10px 12px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background-image: linear-gradient(45deg, transparent 50%, var(--accent) 50%),
+                    linear-gradient(135deg, var(--accent) 50%, transparent 50%);
+  background-position: calc(100% - 20px) calc(1em + 2px),
+                       calc(100% - 15px) calc(1em + 2px);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+
+#controls select:hover {
+  background-color: rgba(96, 165, 250, 0.1);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+#controls select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 6px rgba(96, 165, 250, 0.4);
+}
+
+#controls label {
+  font-weight: 600;
+  color: var(--muted);
+  margin-right: 6px;
+}
+
+#controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+/* --- Sort Button Group --- */
+#sort-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+
+
+#sort-buttons button,
+#clear-completed-btn,
+#export-btn,
+#clear-storage-btn {
+  background: var(--glass);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--muted);
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#sort-buttons button:hover,
+#clear-completed-btn:hover,
+#export-btn:hover,
+#clear-storage-btn:hover {
+  color: white;
+  border-color: var(--accent);
+}
+
+#sort-buttons .active {
+  background: var(--accent);
+  color: #04263b;
+  font-weight: 600;
+  border: none;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+#sort-buttons span {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.sort-btn {
+  background: var(--glass);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--muted);
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-weight: 600;
+}
+
+.sort-btn:hover {
+  border-color: var(--accent);
+  color: white;
+  background: rgba(96, 165, 250, 0.1);
+}
+
+.sort-btn.active {
+  background: var(--accent);
+  color: #04263b;
+  border-color: var(--accent);
+  box-shadow: 0 0 6px rgba(96, 165, 250, 0.4);
+}
+
+
+
+
+
+footer{padding:12px;text-align:center;color:var(--muted);font-size:13px; background: linear-gradient(180deg, #1e293b 0%, #334155 100%); color: #f8fafc;}
+
+
+
+/* -------- THEME TOGGLE -------- */
+#theme-toggle-container {
+  text-align: right;
+  margin-top: 10px;
+}
+
+#theme-toggle {
+  background: var(--accent);
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: #04263b;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+#theme-toggle:hover {
+  background: #7cc3ff;
+}
+
+/* -------- LIGHT THEME VARIABLES -------- */
+body.light {
+  --bg: #f4f6fb;
+  --card: #ffffff;
+  --accent: #2563eb;
+  --muted: #475569;
+  --success: #16a34a;
+  --danger: #dc2626;
+  background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+  color: #0f172a;
+}
+
+body.light .task-card {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.02));
+  border-color: rgba(0, 0, 0, 0.05);
+}
+
+body.light .icon-btn {
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+body.light #theme-toggle {
+  background: var(--accent);
+  color: #ffffff;
+}
+

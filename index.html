@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <meta name="description" content="A simple task program using Javascript for CSE310.">
+  <meta name="author" content="Rachel Amarachukwu Ukpabi">
+  <title>Task Tracker| Rachel Ukpabi</title>
+  <link rel="stylesheet" href="styles/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1>Task Tracker</h1>
+    <p class="subtitle">ADD, EDIT, SORT, and persist tasks — built for CSE 310</p>
+
+    <div id="theme-toggle-container">
+        <button id="theme-toggle">🌙 Dark Mode</button>
+    </div>
+
+  </header>
+
+  <main>
+    <section id="task-form-section">
+      <form id="task-form" autocomplete="off">
+        <input id="task-name" type="text" placeholder="Task name" required />
+        <input id="task-due" type="date" />
+        <select id="task-priority" required>
+          <option value="low">Low</option>
+          <option value="medium" selected>Medium</option>
+          <option value="high">High</option>
+        </select>
+        <button type="submit" id="add-btn">Add Task</button>
+        <button type="button" id="update-btn" hidden>Update Task</button>
+        <button type="button" id="cancel-edit-btn" hidden>Cancel</button>
+      </form>
+
+      <div id="controls">
+        <span>Sort:</span>
+        <button class="sort-btn active" data-sort="created">Created</button>
+        <button class="sort-btn" data-sort="priority">Priority</button>
+        <button class="sort-btn" data-sort="due">Due Date</button>
+        <button id="clear-completed-btn">Remove Completed</button>
+        <button id="export-btn">Export (console)</button>
+        <button id="clear-storage-btn">Clear Storage</button>
+      </div>
+    </section>
+
+    <section id="task-list-section">
+      <h2>Tasks</h2>
+      <ul id="task-list">
+        <!-- tasks injected here -->
+      </ul>
+      <p id="empty-msg" class="muted">No tasks yet — add one!</p>
+    </section>
+  </main>
+
+  <footer>
+
+
+    <p>
+        &copy; <span id="currentyear"></span> Rachel Amarachukwu Ukpabi. Nigeria
+    </p>
+
+    <small>Task Tracker — simple browser app for CSE 310</small>-
+    <p id="lastModified"></p>
+
+  </footer>
+
+  <script src="scripts/scripts.js"></script>
+</body>
+</html>
