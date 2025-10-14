@@ -22,10 +22,26 @@ I developed this software using the following tools and technologies:
 - **JavaScript (ES6)** – logic, event handling, and localStorage persistence  
 - **HTML5** – page structure and form controls  
 - **CSS3** – styling, layout, and dark/light theme toggle  
+- Toastify.js Library (via CDN)
 
 ---
 
-## Useful Websites
+
+# Features Demonstrated
+✅ Output to screen  
+✅ Native Array ES6 functions  
+✅ Recursion (countTasksRecursively)  
+✅ JS library usage (Toastify.js)  
+✅ Exception handling with try/catch  
+✅ Dynamic DOM creation with CSS styling
+
+# Useful Websites
+* [Toastify.js](https://apvarun.github.io/toastify-js/)
+* [MDN JavaScript Recursion](https://developer.mozilla.org/en-US/docs/Glossary/Recursion)
+* [MDN Array Methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
+
+
+## Other Useful Websites
 
 - [W3Schools – JavaScript Tutorial](https://www.w3schools.com/js/)  
 - [MDN Web Docs – JavaScript Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript)  

@@ -4,6 +4,19 @@
    Features: add/edit/delete/complete/sort tasks + optional localStorage persistence
 */
 
+// ✅ External library: Toastify.js - for popup notifications
+function showToast(message, color = "#60a5fa") {
+  Toastify({
+    text: message,
+    duration: 2000,
+    gravity: "top",
+    position: "right",
+    backgroundColor: color,
+    stopOnFocus: true
+  }).showToast();
+}
+
+
 // ------- Data model & persistence -------
 /**
  * @typedef {Object} Task
@@ -51,6 +64,21 @@ function saveTasks() {
     console.error('Failed to save tasks:', err);
   }
 }
+
+function loadTasks() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) throw new Error("Stored data corrupted");
+    return parsed;
+  } catch (err) {
+    console.error('Failed to load tasks:', err);
+    showToast("⚠️ Error loading saved tasks!", "#f97316");
+    return [];
+  }
+}
+
 
 /**
  * Generate a compact unique ID for tasks
@@ -199,6 +227,8 @@ function addTask(title, due, priority) {
   tasks.push(t);
   saveTasks();
   renderTasks();
+  showToast("✅ Task added!");
+
 }
 
 /**
@@ -239,8 +269,10 @@ function updateTaskFromForm() {
   t.due = dueInput.value || null;
   t.priority = prioritySelect.value;
   saveTasks();
+ 
   cancelEdit();
   renderTasks();
+  showToast("✅ Task added!");
 }
 
 /**
@@ -251,7 +283,9 @@ function deleteTask(id) {
   if (!confirm('Delete this task?')) return;
   tasks = tasks.filter(x => x.id !== id);
   saveTasks();
+ 
   renderTasks();
+  showToast("✅ Task deleted!");
 }
 
 /**
@@ -263,6 +297,7 @@ function toggleComplete(id) {
   if (!t) return;
   t.completed = !t.completed;
   saveTasks();
+
   renderTasks();
 }
 
@@ -273,7 +308,10 @@ function clearCompleted() {
   if (!confirm('Remove all completed tasks?')) return;
   tasks = tasks.filter(x => !x.completed);
   saveTasks();
+ 
   renderTasks();
+  showToast("✅ Task cleared completed!");
+
 }
 
 /**
@@ -291,7 +329,9 @@ function clearAllStorage() {
   if (!confirm('Clear ALL tasks and storage?')) return;
   tasks = [];
   saveTasks();
+ 
   renderTasks();
+  showToast("✅ Task all cleared!");
 }
 
 // ------- Events & initialization -------
@@ -397,6 +437,17 @@ clearCompletedBtn.addEventListener('click', clearCompleted);
 exportBtn.addEventListener('click', exportToConsole);
 clearStorageBtn.addEventListener('click', clearAllStorage);
 
+// ✅ Example of Recursion (counts total tasks recursively)
+function countTasksRecursively(tasks, index = 0) {
+  if (index >= tasks.length) return 0;
+  return 1 + countTasksRecursively(tasks, index + 1);
+}
+
+// Show recursive count in console
+console.log("Total tasks (recursively counted):", countTasksRecursively(tasks));
+
+
+
 // Initialize
 (function init() {
   tasks = loadTasks();
@@ -412,6 +463,24 @@ function seedSample() {
   addTask('Finish lab report', '2025-10-20', 'high');
   addTask('Grocery shopping', null, 'low');
   addTask('Prepare presentation', '2025-10-18', 'medium');
+}
+
+
+// ------- Toast Notification Feature -------
+function showToast(message) {
+  let toast = document.createElement("div");
+  toast.className = "toast";
+  toast.textContent = message;
+  document.body.appendChild(toast);
+
+  // Animate in
+  setTimeout(() => toast.classList.add("show"), 100);
+
+  // Remove after 2 seconds
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.remove(), 500);
+  }, 2000);
 }
 
 

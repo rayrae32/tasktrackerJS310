@@ -297,7 +297,31 @@ button:active {
   box-shadow: 0 0 6px rgba(96, 165, 250, 0.4);
 }
 
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #323232;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 6px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.4s ease;
+  z-index: 1000;
+  font-size: 14px;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
 
+
+body.light .toast {
+  background: #f1f1f1;
+  color: #333;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
 
 
 
